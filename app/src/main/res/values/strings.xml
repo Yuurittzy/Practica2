@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Practica2_Yuritzy</string>
+    <string name="quantity">Cantidad</string>
+    <string name="price">Precio</string>
+    <string name="naruto">Naruto</string>
+    <string name="sakura">Sakura</string>
+    <string name="itachi">Itachi</string>
+    <string name="add">Agregar</string>
+    <string name="delete">Borrar</string>
+    <string name="edit">Editar</string>
+    <string name="name">Nombre de la caja: %s</string>
+    <string name="quantity_total">Cantidad disponible: %s</string>
+    <string name="unit_price">El precio por unidad: %s</string>
+    <string name="insert_title">Inserte el modelo de caja que desea, la cantidad y el precio </string>
+</resources>
