@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="box_radius">16dp</dimen>
+    <dimen name="box_height">60dp</dimen>
+    <dimen name="btn_width">150dp</dimen>
+</resources>

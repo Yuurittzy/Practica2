@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertActivity">
-
+    tools:context=".EditActivity">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -14,7 +13,7 @@
         android:background="@color/my_purple"
         android:fontFamily="@font/alata"
         android:gravity="center"
-        android:text="@string/insert_title"
+        android:text="@string/edit_title"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,13 +96,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="@dimen/box_height"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
         android:onClick="click"
-        android:text="@string/add"
+        android:text="@string/Update"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:backgroundTint="#A471FF"
@@ -115,8 +114,5 @@
         app:layout_constraintVertical_bias="0.85">
 
     </com.google.android.material.button.MaterialButton>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,6 @@ class InsertActivity : AppCompatActivity() {
         spinner.adapter = adapter
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // showImage(position)
                 nameTmp = values[position]
             }
 
@@ -41,17 +40,6 @@ class InsertActivity : AppCompatActivity() {
             }
         }
     }
-    fun showImage(position: Int) {
-     val image = findViewById<ImageView>(R.id.ivBox)
-     val resource = when(position) {
-         0 -> AppCompatResources.getDrawable(this, R.drawable.naruto)
-         1 -> AppCompatResources.getDrawable(this, R.drawable.sakura)
-         2 -> AppCompatResources.getDrawable(this, R.drawable.itachi)
-
-         else -> AppCompatResources.getDrawable(this, R.drawable.naruto)
-     }
-     image.setImageDrawable(resource)
- }
 
 fun click(view: android.view.View) {
     val dbBoxes = DBBoxes(this)
@@ -65,6 +53,7 @@ fun click(view: android.view.View) {
                 Toast.makeText(this@InsertActivity, "Registro guardado exitosamente", Toast.LENGTH_LONG).show()
 
                 //Reiniciamos las cajas de texto
+                spinner.setSelection(0)
                 tietQuantity.setText("")
                 tietPrice.setText("")
                 tietQuantity.requestFocus()

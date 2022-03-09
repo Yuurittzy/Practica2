@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica2_Yuritzy">
         <activity
+            android:name=".EditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".InsertActivity"
             android:exported="false" />
         <activity

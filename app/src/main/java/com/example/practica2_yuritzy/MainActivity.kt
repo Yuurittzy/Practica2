@@ -23,11 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         val dbGames = DBBoxes(this)
         listGames = dbGames.getBoxes()
-
 
         val gamesAdapter = BoxesAdapter(this, listGames)
 
@@ -36,10 +33,14 @@ class MainActivity : AppCompatActivity() {
         binding.lvBoxes.setOnItemClickListener { adapterView, view, i, l ->
             //l es el id
             //i es la posición
+            val intent = Intent(this, DetailsActivity::class.java)
+            intent.putExtra("ID", l.toInt())
+
+            startActivity(intent)
         }
 
-    }
 
+    }
 
 
     fun click(view: View) {

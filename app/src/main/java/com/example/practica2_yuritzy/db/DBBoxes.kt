@@ -54,4 +54,61 @@ class DBBoxes(context: Context?) : DBHelper(context) {
        return listGames
     }
 
+    fun getGame(id: Int): Box?{
+        val dbHelper = DBHelper(context)
+        val db = dbHelper.writableDatabase
+
+        var game: Box? = null
+        var cursorGames: Cursor? = null
+
+        cursorGames = db.rawQuery("SELECT * FROM $TABLE_BOXES WHERE id = $id LIMIT 1", null)
+
+        if(cursorGames.moveToFirst()){
+            game = Box(cursorGames.getLong(0), cursorGames.getString(1), cursorGames.getString(2), cursorGames.getString(3))
+        }
+
+        cursorGames.close()
+
+        return game
+    }
+
+    fun updateGame(id: Int, name: String, quantity: String, price: String): Boolean{
+
+        var banderaCorrecto = false
+
+        val dbHelper = DBHelper(context)
+        val db = dbHelper.writableDatabase
+
+        try{
+            db.execSQL("UPDATE $TABLE_BOXES SET name = '$name', quantity = '$quantity', price = '$price' WHERE id = $id")
+            banderaCorrecto = true
+        }catch(e: Exception){
+
+        }finally {
+            db.close()
+        }
+
+        return banderaCorrecto
+
+    }
+
+    fun deleteGame(id: Int): Boolean{
+
+        var banderaCorrecto = true
+
+        val dbHelper = DBHelper(context)
+        val db = dbHelper.writableDatabase
+
+        try{
+            db.execSQL("DELETE FROM $TABLE_BOXES WHERE id = $id")
+            banderaCorrecto = true
+        }catch(e: Exception){
+
+        }finally {
+            db.close()
+        }
+
+        return banderaCorrecto
+    }
+
 }

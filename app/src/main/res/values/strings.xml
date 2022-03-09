@@ -8,8 +8,10 @@
     <string name="add">Agregar</string>
     <string name="delete">Borrar</string>
     <string name="edit">Editar</string>
+    <string name="Update">Actualizar</string>
     <string name="name">Nombre de la caja: %s</string>
     <string name="quantity_total">Cantidad disponible: %s</string>
     <string name="unit_price">El precio por unidad: %s</string>
     <string name="insert_title">Inserte el modelo de caja que desea, la cantidad y el precio </string>
+    <string name="edit_title">Edite el modelo de caja que desea, la cantidad y el precio </string>
 </resources>

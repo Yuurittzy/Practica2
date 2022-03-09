@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertActivity">
-
+    tools:context=".DetailsActivity">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -14,7 +13,7 @@
         android:background="@color/my_purple"
         android:fontFamily="@font/alata"
         android:gravity="center"
-        android:text="@string/insert_title"
+        android:text="@string/edit_title"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,13 +21,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/box_height"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
-        android:contextClickable="false"
         android:textAlignment="center"
         app:boxBackgroundMode="outline"
         app:layout_constraintBottom_toTopOf="@+id/tilQuantity"
@@ -59,9 +56,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietQuantity"
-            android:maxLength="10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:maxLength="10">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -90,33 +87,55 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPrice"
             android:layout_width="match_parent"
-            android:inputType="number"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:inputType="number">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
+        android:id="@+id/btnEdit"
+        android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/box_height"
-        android:layout_marginStart="@dimen/margin_large"
-        android:layout_marginEnd="@dimen/margin_large"
         android:onClick="click"
-        android:text="@string/add"
+        android:text="@string/edit"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:backgroundTint="#A471FF"
         app:cornerRadius="@dimen/box_radius"
+        app:icon="@drawable/ic_edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvTitle"
         app:layout_constraintVertical_bias="0.85">
 
     </com.google.android.material.button.MaterialButton>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDelete"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/box_height"
+        android:onClick="click"
+        android:text="@string/delete"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:backgroundTint="#A471FF"
+        app:cornerRadius="@dimen/box_radius"
+        app:icon="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle"
+        app:layout_constraintVertical_bias="0.85">
 
+    </com.google.android.material.button.MaterialButton>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
