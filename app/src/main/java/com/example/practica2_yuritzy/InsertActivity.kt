@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.content.res.AppCompatResources
 import com.example.practica2_yuritzy.databinding.ActivityInsertBinding
 import com.example.practica2_yuritzy.db.DBBoxes
-import com.example.practica2_yuritzy.db.DBHelper
 
 class InsertActivity : AppCompatActivity() {
 
@@ -41,43 +39,38 @@ class InsertActivity : AppCompatActivity() {
         }
     }
 
-fun click(view: android.view.View) {
-    val dbBoxes = DBBoxes(this)
+    fun click(view: View) {
+        val dbBoxes = DBBoxes(this)
 
-    with(binding){
+        with(binding) {
 
-        if(!tietPrice.text.toString().isEmpty() && !tietQuantity.text.toString().isEmpty()){
-            val id = dbBoxes.insertGame(nameTmp, tietQuantity.text.toString(), tietPrice.text.toString())
+            if (!tietPrice.text.toString().isEmpty() && !tietQuantity.text.toString().isEmpty()) {
+                val id = dbBoxes.insertBox(
+                    nameTmp,
+                    tietQuantity.text.toString(),
+                    tietPrice.text.toString()
+                )
 
-            if(id > 0) { //el registro se insertó correctamente
-                Toast.makeText(this@InsertActivity, "Registro guardado exitosamente", Toast.LENGTH_LONG).show()
+                if (id > 0) {
+                    Toast.makeText(this@InsertActivity, "Registro guardado exitosamente", Toast.LENGTH_LONG).show()
 
-                //Reiniciamos las cajas de texto
-                spinner.setSelection(0)
-                tietQuantity.setText("")
-                tietPrice.setText("")
-                tietQuantity.requestFocus()
-            }else{
-                Toast.makeText(this@InsertActivity, "Error al guardar el registro", Toast.LENGTH_LONG).show()
+                    spinner.setSelection(0)
+                    tietQuantity.setText("")
+                    tietPrice.setText("")
+                    tietQuantity.requestFocus()
+                } else {
+                    Toast.makeText(this@InsertActivity, "Error al guardar el registro", Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(this@InsertActivity, "Por favor llene todos los campos", Toast.LENGTH_LONG).show()
             }
-        }else{
-            Toast.makeText(this@InsertActivity, "Por favor llene todos los campos", Toast.LENGTH_LONG).show()
-
-            //Para mandar un error en una caja de texto especíica
-            //tietTitulo.text = "Por favor agrega un título"
         }
-
     }
-
-}
 
     override fun onBackPressed() {
         super.onBackPressed()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
-
-
-
 
 }

@@ -11,30 +11,30 @@ import com.example.practica2_yuritzy.R
 import com.example.practica2_yuritzy.databinding.ItemBoxBinding
 import com.example.practica2_yuritzy.model.Box
 
-class BoxesAdapter(context: Context, listGames: ArrayList<Box>): BaseAdapter() {
-    private val listGames = listGames
+class BoxesAdapter(context: Context, private val boxes: ArrayList<Box>): BaseAdapter() {
+
     private val layoutInflater = LayoutInflater.from(context)
 
     override fun getCount(): Int {
-        return listGames.size
+        return boxes.size
     }
 
     override fun getItem(position: Int): Any {
-        return listGames[position]
+        return boxes[position]
     }
 
     override fun getItemId(position: Int): Long {
-        return listGames[position].id
+        return boxes[position].id
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val binding = ItemBoxBinding.inflate(layoutInflater)
 
         with(binding){
-            showImage(listGames[position].name, ivBox)
-            tvNameBox.text = layoutInflater.context?.getString(R.string.name, listGames[position].name)
-            tvQuantity.text = layoutInflater.context?.getString(R.string.quantity_total, listGames[position].quantity)
-            tvPrice.text = layoutInflater.context?.getString(R.string.unit_price, listGames[position].price)
+            showImage(boxes[position].name, ivBox)
+            tvNameBox.text = layoutInflater.context?.getString(R.string.name, boxes[position].name)
+            tvQuantity.text = layoutInflater.context?.getString(R.string.quantity_total, boxes[position].quantity)
+            tvPrice.text = layoutInflater.context?.getString(R.string.unit_price, boxes[position].price)
 
         }
         return binding.root

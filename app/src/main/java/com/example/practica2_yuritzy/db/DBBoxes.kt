@@ -9,7 +9,7 @@ class DBBoxes(context: Context?) : DBHelper(context) {
 
     val context = context
 
-    fun insertGame(name: String, quantity: String, price: String): Long{
+    fun insertBox(name: String, quantity: String, price: String): Long{
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
         var id: Long = 0
@@ -24,7 +24,7 @@ class DBBoxes(context: Context?) : DBHelper(context) {
             id = db.insert(TABLE_BOXES, null, values)
 
         }catch(e: Exception){
-            //Manejo de la excepción
+
         }finally {
             db.close()
         }
@@ -38,42 +38,41 @@ class DBBoxes(context: Context?) : DBHelper(context) {
 
        var listGames = ArrayList<Box>()
        var gameTmp: Box? = null
-       var cursorGames: Cursor? = null
+       var cursorBoxes: Cursor? = null
 
-       cursorGames = db.rawQuery("SELECT * FROM $TABLE_BOXES", null)
+       cursorBoxes = db.rawQuery("SELECT * FROM $TABLE_BOXES", null)
 
-       if(cursorGames.moveToFirst()){
+       if(cursorBoxes.moveToFirst()){
            do{
-               gameTmp = Box(cursorGames.getLong(0), cursorGames.getString(1), cursorGames.getString(2), cursorGames.getString(3))
+               gameTmp = Box(cursorBoxes.getLong(0), cursorBoxes.getString(1), cursorBoxes.getString(2), cursorBoxes.getString(3))
                listGames.add(gameTmp)
-           }while(cursorGames.moveToNext())
+           }while(cursorBoxes.moveToNext())
        }
 
-       cursorGames.close()
+       cursorBoxes.close()
 
        return listGames
     }
 
-    fun getGame(id: Int): Box?{
+    fun getBox(id: Int): Box?{
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
 
         var game: Box? = null
-        var cursorGames: Cursor? = null
+        var cursorBoxes: Cursor? = null
 
-        cursorGames = db.rawQuery("SELECT * FROM $TABLE_BOXES WHERE id = $id LIMIT 1", null)
+        cursorBoxes = db.rawQuery("SELECT * FROM $TABLE_BOXES WHERE id = $id LIMIT 1", null)
 
-        if(cursorGames.moveToFirst()){
-            game = Box(cursorGames.getLong(0), cursorGames.getString(1), cursorGames.getString(2), cursorGames.getString(3))
+        if(cursorBoxes.moveToFirst()){
+            game = Box(cursorBoxes.getLong(0), cursorBoxes.getString(1), cursorBoxes.getString(2), cursorBoxes.getString(3))
         }
 
-        cursorGames.close()
+        cursorBoxes.close()
 
         return game
     }
 
-    fun updateGame(id: Int, name: String, quantity: String, price: String): Boolean{
-
+    fun updateBox(id: Int, name: String, quantity: String, price: String): Boolean{
         var banderaCorrecto = false
 
         val dbHelper = DBHelper(context)
@@ -92,8 +91,7 @@ class DBBoxes(context: Context?) : DBHelper(context) {
 
     }
 
-    fun deleteGame(id: Int): Boolean{
-
+    fun deleteBox(id: Int): Boolean{
         var banderaCorrecto = true
 
         val dbHelper = DBHelper(context)

@@ -1,19 +1,16 @@
 package com.example.practica2_yuritzy
 
-import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.practica2_yuritzy.databinding.ActivityDetailsBinding
-import com.example.practica2_yuritzy.databinding.ActivityMainBinding
 import com.example.practica2_yuritzy.db.DBBoxes
 import com.example.practica2_yuritzy.model.Box
 
@@ -42,7 +39,7 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         dbGames = DBBoxes(this)
-        game = dbGames.getGame(id)
+        game = dbGames.getBox(id)
 
         if(game != null){
             with(binding){
@@ -50,7 +47,6 @@ class DetailsActivity : AppCompatActivity() {
                 tietQuantity.setText(game?.quantity)
                 tietPrice.setText(game?.price)
 
-                //Para que no se abra el teclado al momento de hacer click en los TextInputEditText
                 tietQuantity.inputType = InputType.TYPE_NULL
                 tietPrice.inputType = InputType.TYPE_NULL
 
@@ -68,7 +64,6 @@ class DetailsActivity : AppCompatActivity() {
         spinner.adapter = adapter
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // showImage(position)
                 nameTmp = values[position]
             }
 
@@ -79,7 +74,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-    fun click(view: android.view.View) {
+    fun click(view: View) {
         when(view.id){
             R.id.btnEdit -> {
                 val intent = Intent(this, EditActivity::class.java)
@@ -92,16 +87,18 @@ class DetailsActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle("Confirmación")
                     .setMessage("¿Realmente deseas eliminar la cajita?")
-                    .setPositiveButton("Sí", DialogInterface.OnClickListener { dialogInterface, i ->
-                        if(dbGames.deleteGame(id)){
-                            Toast.makeText(this, "Registro eliminado exitosamente", Toast.LENGTH_LONG).show()
+                    .setPositiveButton("Sí") { _, _ ->
+                        if (dbGames.deleteBox(id)) {
+                            Toast.makeText(
+                                this,
+                                "Registro eliminado exitosamente",
+                                Toast.LENGTH_LONG
+                            ).show()
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         }
-                    })
-                    .setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
-                        //Si se desea realizar alguna acción cuando el usuario selecciona NO
-                    })
+                    }
+                    .setNegativeButton("No") { _, _ -> }
                     .show()
             }
         }

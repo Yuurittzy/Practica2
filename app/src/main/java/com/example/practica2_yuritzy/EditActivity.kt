@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import com.example.practica2_yuritzy.databinding.ActivityDetailsBinding
 import com.example.practica2_yuritzy.databinding.ActivityEditBinding
 import com.example.practica2_yuritzy.db.DBBoxes
 import com.example.practica2_yuritzy.model.Box
@@ -17,8 +16,8 @@ class EditActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditBinding
 
-    private lateinit var dbGames: DBBoxes
-    var game: Box? = null
+    private lateinit var dbBoxes: DBBoxes
+    var box: Box? = null
     var id: Int = 0
     val values by lazy { listOf(getString(R.string.naruto),getString(R.string.sakura),getString(R.string.itachi))}
     private var nameTmp = ""
@@ -38,15 +37,15 @@ class EditActivity : AppCompatActivity() {
             id = savedInstanceState.getSerializable("ID") as Int
         }
 
-        dbGames = DBBoxes(this)
+        dbBoxes = DBBoxes(this)
 
-        game = dbGames.getGame(id)
+        box = dbBoxes.getBox(id)
 
-        if(game != null){
+        if(box != null){
             with(binding){
-                spinner.setSelection(values.indexOf(game?.name))
-                tietQuantity.setText(game?.quantity)
-                tietPrice.setText(game?.price)
+                spinner.setSelection(values.indexOf(box?.name))
+                tietQuantity.setText(box?.quantity)
+                tietPrice.setText(box?.price)
             }
         }
 
@@ -59,7 +58,6 @@ class EditActivity : AppCompatActivity() {
         spinner.adapter = adapter
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // showImage(position)
                 nameTmp = values[position]
             }
 
@@ -72,7 +70,7 @@ class EditActivity : AppCompatActivity() {
     fun click(view: View) {
         with(binding){
             if(!tietPrice.text.toString().isEmpty() && !tietQuantity.text.toString().isEmpty()){
-                if(dbGames.updateGame(id, nameTmp, tietQuantity.text.toString(), tietPrice.text.toString())){
+                if(dbBoxes.updateBox(id, nameTmp, tietQuantity.text.toString(), tietPrice.text.toString())){
                     Toast.makeText(this@EditActivity, "Registro actualizado exitosamente", Toast.LENGTH_LONG).show()
                     val intent = Intent(this@EditActivity, DetailsActivity::class.java)
                     intent.putExtra("ID", id)
